@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 # Add yarn timeout to handle slow CPU when Github Actions
 RUN yarn config set network-timeout 300000
-RUN yarn workspaces focus --production
+RUN yarn install --frozen-lockfile --production=true
 
 # Rebuild the source code only when needed
 FROM node:18-alpine AS builder
